@@ -12,7 +12,7 @@ class Publisher(object):
         super(Publisher, self).__init__()
 
     def subscribe(self, subscriber):
-        """subscriber: an object that inherits from Subscriber and receives the message in its 'publish' method."""
+        """subscriber: an object that inherits from Subscriber and receives the message in its 'receive' method."""
         if not isinstance(subscriber, Subscriber):
             raise TypeError("The given subscriber (" + str(subscriber) + ") must inherit from Subscriber.")
         if subscriber in self.subscribers:
@@ -28,7 +28,7 @@ class Publisher(object):
         self.subscribers.remove(subscriber)
 
     def publish(self, message, check = None):
-        """message: the message to broadcast (given to 'publish')
+        """message: the message to broadcast (given to 'receive')
         check: a callback that return True if the given object must receive the message, False elsewhere."""
 
         if check is None:
